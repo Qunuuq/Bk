@@ -1,10 +1,9 @@
 import requests
 import time
-import os
 
-# توكن البوت ومعرف القناة (عدلها هنا)
-BOT_TOKEN = os.getenv('6335197909:AAEVXGR2h3yNiThO3fwbBn_-AphOwnoItwE')  # يتم جلب التوكن من متغيرات البيئة
-CHANNEL_ID = os.getenv('-1002273356001')  # يتم جلب معرف القناة من متغيرات البيئة
+# توكن البوت ومعرف القناة (تم تحديثه بالقيم التي قدمتها)
+BOT_TOKEN = '6335197909:AAEVXGR2h3yNiThO3fwbBn_-AphOwnoItwE'  # توكن البوت
+CHANNEL_ID = '-1002273356001'  # معرف القناة (رقمي)
 
 # دالة لجلب قائمة السور
 def fetch_surahs():
@@ -56,6 +55,8 @@ def send_ayah_to_telegram(surah_name, verse_num, ayah_text, audio_url):
         print(f"تم إرسال الآية {verse_num} من سورة {surah_name} بنجاح")
     else:
         print(f"فشل في إرسال الآية {verse_num} من سورة {surah_name}: {response.text}")
+        print(f"رابط الصوت: {audio_url}")
+        print(f"التفاصيل: {response.json()}")
 
 # دالة رئيسية لإرسال كل الآيات
 def send_all_ayahs():
@@ -74,4 +75,5 @@ def send_all_ayahs():
 
 # بدء الإرسال
 if __name__ == "__main__":
-    send_all_ayahs()
+    send_all_ayahs()  # إرسال جميع الآيات مرة واحدة
+    print("تم إرسال جميع آيات القرآن الكريم بنجاح!")
