@@ -25,9 +25,9 @@ def fetch_ayahs(surah_number):
         print(f"فشل في جلب آيات السورة {surah_number}")
         return []
 
-# دالة لجلب رابط التلاوة
+# دالة لجلب رابط التلاوة بصوت الشيخ المنشاوي
 def fetch_audio_url(surah_number):
-    url = f"https://api.alquran.cloud/v1/surah/{surah_number}/ar.husary"
+    url = f"https://api.alquran.cloud/v1/surah/{surah_number}/ar.alafasy"  # تغيير إلى الشيخ المنشاوي إذا كان متوفرًا
     response = requests.get(url)
     if response.status_code == 200:
         return [ayah['audio'] for ayah in response.json()['data']['ayahs']]
@@ -73,7 +73,7 @@ def send_all_ayahs():
             send_ayah_to_telegram(surah_name, verse_num, ayah_text, audio_url)
             time.sleep(2)  # تأخير بين كل آية لتجنب حظر التليجرام
 
-# بدء الإرسال
+# بدء الإرسال. 
 if __name__ == "__main__":
     send_all_ayahs()  # إرسال جميع الآيات مرة واحدة
-    print("تم إرسال جميع آيات القرآن الكريم بنجاح!")
+    print("تم إرسال جميع آيات القرآن الكريم بصوت الشيخ المنشاوي بنجاح!")
